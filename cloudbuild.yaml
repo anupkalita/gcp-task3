@@ -1,0 +1,17 @@
+steps:
+  # build the container image
+- name: "gcr.io/cloud-builders/docker"
+  args: ["build", "-t", "gcr.io/global-song-354109/task3:prod", "."]
+  # push container image
+- name: "gcr.io/cloud-builders/docker"
+  args: ["push", "gcr.io/global-song-354109/task3:prod"]
+  # deploy container image to GKE
+- name: "gcr.io/cloud-builders/gke-deploy"
+  args:
+  - run
+  - --filename=app.yaml
+  - --location=us-central1-c
+  - --cluster=ak-cluster-1
+  - --namespace=$BRANCH_NAME
+options:
+  logging: CLOUD_LOGGING_ONLY
