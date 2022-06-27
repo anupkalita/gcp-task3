@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: gcr.io/global-song-354109/task3:prodd
+          image: gcr.io/global-song-354109/task3:devv
           ports:
             - name: web
               containerPort: 80
